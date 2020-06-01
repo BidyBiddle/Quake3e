@@ -72,7 +72,7 @@ cvar_t	*cl_guidServerUniq;
 cvar_t	*cl_dlURL;
 cvar_t	*cl_dlDirectory;
 
-cvar_t* cl_demomode;
+cvar_t *cl_demomode;
 
 // common cvars for GLimp modules
 cvar_t	*vid_xpos;			// X coordinate of window position
@@ -2336,14 +2336,9 @@ A download completed or failed
 */
 void CL_NextDownload( void )
 {
-<<<<<<< HEAD
 	char *s;
 	char *remoteName, *localName;
-=======
-	char* s;
-	char* remoteName, * localName;
-	cvar_t* fs_downloadpath;
->>>>>>> aea22f5... allow specifying download folder with +set fs_downloadpath <folder>
+	cvar_t *fs_downloadpath;
 	qboolean useCURL = qfalse;
 
  	// A download has finished, check whether this matches a referenced checksum
@@ -4045,14 +4040,9 @@ static void CL_InitGLimp_Cvars( void )
 CL_Init
 ====================
 */
-<<<<<<< HEAD
-void CL_Init( void ) {
-	const char *s;
-=======
 void CL_Init(void) {
 	const char* s;
-	cvar_t* fs_downloadpath;
->>>>>>> aea22f5... allow specifying download folder with +set fs_downloadpath <folder>
+	cvar_t *fs_downloadpath;
 
 	Com_Printf( "----- Client Initialization -----\n" );
 

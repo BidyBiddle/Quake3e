@@ -860,7 +860,7 @@ Start downloading file from remoteURL and save it under fs_game/localName
 qboolean Com_DL_Begin( download_t *dl, const char *localName, const char *remoteURL, qboolean headerCheck, qboolean autoDownload )
 {
 	char *s;
-	cvar_t* fs_downloadpath;
+	cvar_t *fs_downloadpath;
 	if ( Com_DL_InProgress( dl ) )
 	{
 		Com_Printf( S_COLOR_YELLOW " already downloading %s\n", dl->Name );
