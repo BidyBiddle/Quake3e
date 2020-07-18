@@ -399,12 +399,15 @@ void SCR_DrawDemoRecording( void ) {
 static void SCR_DrawSpeedo( void )
 {
 	int speed;
+	playerState_t *ps;
 	char string[64];
 
 	if( !cl_drawspeedo->integer )
 		return;
 
-	speed = (int) sqrt(pow(cl.snap.ps.velocity[PITCH], 2) + pow(cl.snap.ps.velocity[YAW], 2));
+	ps = CL_GetPlayerState();
+
+	speed = (int) sqrt(ps->velocity[PITCH] * ps->velocity[PITCH] + ps->velocity[YAW] * ps->velocity[YAW]);
 
 	sprintf( string, "Speed: %d ups", speed );
 
@@ -417,20 +420,23 @@ static void SCR_DrawAngle( void )
 	float yaw, dot, length;
 	int angle;
 	vec3_t v1, v2;
+	playerState_t *ps;
 	char string[64];
 
 	if( !cl_drawangle->integer ) {
 		return;
 	}
 
+	ps = CL_GetPlayerState();
+
 	angle = 0;
 
-	VectorCopy(cl.snap.ps.velocity, v1);
+	VectorCopy(ps->velocity, v1);
 	v1[2] = 0.0f;
 	length = VectorLength(v1);
 
 	if( length ) {
-		yaw = cl.snap.ps.viewangles[YAW];
+		yaw = ps->viewangles[YAW];
 		yaw *= M_PI/180.f;
 
 		v2[0] = cos(yaw);

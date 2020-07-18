@@ -40,6 +40,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #define QKEY_SIZE 2048
 
 #define	RETRANSMIT_TIMEOUT	3000	// time between connection packet retransmits
+#define URT_PS_OFFSET 0x234c49c
 
 // snapshots are a view of the server at a given time
 typedef struct {
@@ -575,6 +576,7 @@ void CL_ShutdownCGame( void );
 qboolean CL_GameCommand( void );
 void CL_CGameRendering( stereoFrame_t stereo );
 void CL_SetCGameTime( void );
+playerState_t *CL_GetPlayerState( void );
 
 //
 // cl_ui.c

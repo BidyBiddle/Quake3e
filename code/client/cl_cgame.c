@@ -96,7 +96,6 @@ static void CL_GetCurrentSnapshotNumber( int *snapshotNumber, int *serverTime ) 
 	*serverTime = cl.snap.serverTime;
 }
 
-
 /*
 ====================
 CL_GetSnapshot
@@ -411,6 +410,11 @@ static void *VM_ArgPtr( intptr_t intValue ) {
 		return (void *)(intValue);
 	else
 		return (void *)(cgvm->dataBase + (intValue & cgvm->dataMask));
+}
+
+playerState_t *CL_GetPlayerState( void )
+{
+	return (playerState_t *) VM_ArgPtr( URT_PS_OFFSET );
 }
 
 
