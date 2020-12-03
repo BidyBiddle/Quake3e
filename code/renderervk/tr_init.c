@@ -302,7 +302,7 @@ static void R_InitExtensions( void )
 	Q_strncpyz( gl_extensions, (char *)qglGetString( GL_EXTENSIONS ), sizeof( gl_extensions ) );
 	Q_strncpyz( glConfig.extensions_string, gl_extensions, sizeof( glConfig.extensions_string ) );
 
-	version = atof( (const char *)qglGetString( GL_VERSION ) );
+	version = Q_atof( (const char *)qglGetString( GL_VERSION ) );
 	gl_version = (int)(version * 10.001);
 
 	glConfig.textureCompression = TC_NONE;
@@ -1504,7 +1504,11 @@ static void R_Register( void )
 	r_drawSun = ri.Cvar_Get( "r_drawSun", "0", CVAR_ARCHIVE_ND );
 	r_dynamiclight = ri.Cvar_Get( "r_dynamiclight", "1", CVAR_ARCHIVE );
 #ifdef USE_PMLIGHT
+#if arm32 || arm64 // RPi4 Vulkan driver have very poor GLSL shaders performance...
+	r_dlightMode = ri.Cvar_Get( "r_dlightMode", "0", CVAR_ARCHIVE );
+#else
 	r_dlightMode = ri.Cvar_Get( "r_dlightMode", "1", CVAR_ARCHIVE );
+#endif
 	ri.Cvar_CheckRange( r_dlightMode, "0", "2", CV_INTEGER );
 	r_dlightScale = ri.Cvar_Get( "r_dlightScale", "0.5", CVAR_ARCHIVE_ND );
 	ri.Cvar_CheckRange( r_dlightScale, "0.1", "1", CV_FLOAT );
