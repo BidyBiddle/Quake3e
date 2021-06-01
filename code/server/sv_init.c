@@ -943,11 +943,14 @@ void SV_Init( void )
     Cvar_SetDescription("Set the file to store a cache of all the player bans\nDefault: serverbans.dat");
 #endif
 
-	sv_levelTimeReset = Cvar_Get( "sv_levelTimeReset", "0", CVAR_ARCHIVE_ND );
-    Cvar_SetDescription( sv_levelTimeReset, "Reset the clock in between matches\nDefault: 0");
+	sv_infiniteStamina = Cvar_Get ("sv_infiniteStamina", "0", CVAR_ARCHIVE_ND );
+	Cvar_SetDescription( sv_infiniteStamina, "Disable stamina\nDefault: 0");
 
-    sv_filter = Cvar_Get( "sv_filter", "filter.txt", CVAR_ARCHIVE );
-    Cvar_SetDescription(sv_filter, "Set the ban filter file\nDefault: filter.txt");
+	sv_levelTimeReset = Cvar_Get( "sv_levelTimeReset", "0", CVAR_ARCHIVE_ND );
+	Cvar_SetDescription( sv_levelTimeReset, "Reset the clock in between matches\nDefault: 0");
+
+	sv_filter = Cvar_Get( "sv_filter", "filter.txt", CVAR_ARCHIVE );
+	Cvar_SetDescription(sv_filter, "Set the ban filter file\nDefault: filter.txt");
 
     // initialize bot cvars so they are listed and can be set before loading the botlib
 	SV_BotInitCvars();

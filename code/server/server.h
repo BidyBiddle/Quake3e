@@ -387,13 +387,13 @@ extern	cvar_t	*sv_pure;
 extern	cvar_t	*sv_floodProtect;
 extern	cvar_t	*sv_lanForceRate;
 extern	cvar_t	*sv_strictAuth;
-
-extern	cvar_t *sv_levelTimeReset;
-extern	cvar_t *sv_filter;
+extern	cvar_t	*sv_infiniteStamina;
+extern	cvar_t	*sv_levelTimeReset;
+extern	cvar_t	*sv_filter;
 
 #ifdef USE_AUTH
 extern	cvar_t	*sv_authServerIP;
-extern  cvar_t  *sv_auth_engine;
+extern	cvar_t	*sv_auth_engine;
 #endif
 
 #ifdef USE_BANS
@@ -404,7 +404,7 @@ extern	int serverBansCount;
 
 #ifdef USE_SERVER_DEMO
 extern	cvar_t	*sv_demonotice;
-extern  cvar_t  *sv_demofolder;
+extern	cvar_t	*sv_demofolder;
 #endif
 
 //===========================================================

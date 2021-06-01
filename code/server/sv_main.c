@@ -66,18 +66,18 @@ cvar_t	*sv_referencedPakNames;
 cvar_t	*sv_serverid;
 cvar_t	*sv_minRate;
 cvar_t	*sv_maxRate;
-cvar_t  *sv_minPing;
-cvar_t  *sv_maxPing;
+cvar_t	*sv_minPing;
+cvar_t	*sv_maxPing;
 cvar_t	*sv_dlRate;
 cvar_t	*sv_gametype;
 cvar_t	*sv_pure;
 cvar_t	*sv_floodProtect;
 cvar_t	*sv_lanForceRate; // dedicated 1 (LAN) server forces local client rates to 99999 (bug #491)
 
-cvar_t  *sv_strictAuth;
-
-cvar_t *sv_levelTimeReset;
-cvar_t *sv_filter;
+cvar_t	*sv_strictAuth;
+cvar_t	*sv_infiniteStamina;
+cvar_t	*sv_levelTimeReset;
+cvar_t	*sv_filter;
 
 #ifdef USE_AUTH
 cvar_t* sv_authServerIP;
