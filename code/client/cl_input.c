@@ -990,7 +990,7 @@ void CL_InitInput( void ) {
     cl_anglespeedkey = Cvar_Get( "cl_anglespeedkey", "1.5", 0 );
     Cvar_SetDescription( cl_anglespeedkey, "Set the speed that the direction keys (not mouse) change the view angle\nDefault: 1.5" );
 
-    cl_maxpackets = Cvar_Get ("cl_maxpackets", "60", CVAR_ARCHIVE );
+    cl_maxpackets = Cvar_Get ("cl_maxpackets", "125", CVAR_ARCHIVE );
     Cvar_CheckRange( cl_maxpackets, "15", "125", CV_INTEGER );
     Cvar_SetDescription(cl_maxpackets, "Set the transmission packet size or how many packets are sent to client\nDefault: 60");
     cl_packetdup = Cvar_Get( "cl_packetdup", "1", CVAR_ARCHIVE_ND );

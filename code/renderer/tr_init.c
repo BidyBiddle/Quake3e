@@ -62,7 +62,7 @@ cvar_t	*r_fastsky;
 cvar_t	*r_neatsky;
 cvar_t	*r_drawSun;
 cvar_t	*r_dynamiclight;
-cvar_t  *r_mergeLightmaps;
+cvar_t	*r_mergeLightmaps;
 #ifdef USE_PMLIGHT
 cvar_t	*r_dlightMode;
 cvar_t	*r_dlightSpecPower;
@@ -607,43 +607,43 @@ GL_CheckErrors
 ==================
 */
 void GL_CheckErrors( void ) {
-    int		err;
-    const char *s;
-    char buf[32];
+	int		err;
+	const char *s;
+	char buf[32];
 
-    err = qglGetError();
-    if ( err == GL_NO_ERROR ) {
-        return;
-    }
-    if ( r_ignoreGLErrors->integer ) {
-        return;
-    }
-    switch( err ) {
-        case GL_INVALID_ENUM:
-            s = "GL_INVALID_ENUM";
-            break;
-        case GL_INVALID_VALUE:
-            s = "GL_INVALID_VALUE";
-            break;
-        case GL_INVALID_OPERATION:
-            s = "GL_INVALID_OPERATION";
-            break;
-        case GL_STACK_OVERFLOW:
-            s = "GL_STACK_OVERFLOW";
-            break;
-        case GL_STACK_UNDERFLOW:
-            s = "GL_STACK_UNDERFLOW";
-            break;
-        case GL_OUT_OF_MEMORY:
-            s = "GL_OUT_OF_MEMORY";
-            break;
-        default:
-            Com_sprintf( buf, sizeof(buf), "%i", err);
-            s = buf;
-            break;
-    }
+	err = qglGetError();
+	if ( err == GL_NO_ERROR ) {
+		return;
+	}
+	if ( r_ignoreGLErrors->integer ) {
+		return;
+	}
+	switch( err ) {
+		case GL_INVALID_ENUM:
+			s = "GL_INVALID_ENUM";
+			break;
+		case GL_INVALID_VALUE:
+			s = "GL_INVALID_VALUE";
+			break;
+		case GL_INVALID_OPERATION:
+			s = "GL_INVALID_OPERATION";
+			break;
+		case GL_STACK_OVERFLOW:
+			s = "GL_STACK_OVERFLOW";
+			break;
+		case GL_STACK_UNDERFLOW:
+			s = "GL_STACK_UNDERFLOW";
+			break;
+		case GL_OUT_OF_MEMORY:
+			s = "GL_OUT_OF_MEMORY";
+			break;
+		default:
+			Com_sprintf( buf, sizeof(buf), "%i", err);
+			s = buf;
+			break;
+	}
 
-    ri.Error( ERR_FATAL, "GL_CheckErrors: %s", s );
+	ri.Error( ERR_FATAL, "GL_CheckErrors: %s", s );
 }
 
 
@@ -927,7 +927,7 @@ void RB_TakeScreenshotBMP( int x, int y, int width, int height, const char *file
 ================== 
 R_ScreenshotFilename
 ================== 
-*/  
+*/
 static void R_ScreenshotFilename( char *fileName, const char *fileExt ) {
 	qtime_t t;
 	int count;
@@ -1026,7 +1026,7 @@ screenshot [filename]
 
 Doesn't print the pacifier message if there is a second arg
 ================== 
-*/  
+*/
 static void R_ScreenShot_f( void ) {
 	char		checkname[MAX_OSPATH];
 	qboolean	silent;
@@ -1059,9 +1059,9 @@ static void R_ScreenShot_f( void ) {
 		return;
 
 	if ( !strcmp( ri.Cmd_Argv(1), "silent" ) ) {
-        silent = qtrue;
-    } else if ( ri.Cmd_Argc() == 3 && silent ) {
-        Com_sprintf( checkname, MAX_OSPATH, "screenshots/%s.%s", ri.Cmd_Argv( 2 ), ext );
+		silent = qtrue;
+	} else if ( ri.Cmd_Argc() == 3 && silent ) {
+		Com_sprintf( checkname, MAX_OSPATH, "screenshots/%s.%s", ri.Cmd_Argv( 2 ), ext );
 	} else if ( typeMask == SCREENSHOT_BMP && !strcmp( ri.Cmd_Argv(1), "clipboard" ) ) {
 		backEnd.screenshotMask |= SCREENSHOT_BMP_CLIPBOARD;
 		silent = qtrue;
@@ -1070,11 +1070,11 @@ static void R_ScreenShot_f( void ) {
 	}
 
 	if ( ri.Cmd_Argc() == 2 && !silent ) {
-        // explicit filename
-        Com_sprintf(checkname, MAX_OSPATH, "screenshots/%s.%s", ri.Cmd_Argv(1), ext);
-    } else if ( ri.Cmd_Argc() == 3 && silent ) {
-        Com_sprintf( checkname, MAX_OSPATH, "screenshots/%s.%s", ri.Cmd_Argv( 2 ), ext );
-    } else {
+		// explicit filename
+		Com_sprintf(checkname, MAX_OSPATH, "screenshots/%s.%s", ri.Cmd_Argv(1), ext);
+	} else if ( ri.Cmd_Argc() == 3 && silent ) {
+		Com_sprintf( checkname, MAX_OSPATH, "screenshots/%s.%s", ri.Cmd_Argv( 2 ), ext );
+	} else {
 		if ( backEnd.screenshotMask & SCREENSHOT_BMP_CLIPBOARD ) {
 			// no need for filename, copy to system buffer
 			checkname[0] = '\0';
@@ -1443,7 +1443,7 @@ static void R_Register( void )
 	r_mapGreyScale = ri.Cvar_Get( "r_mapGreyScale", "0", CVAR_ARCHIVE_ND | CVAR_LATCH );
 	ri.Cvar_CheckRange( r_mapGreyScale, "-1", "1", CV_FLOAT );
 
-	r_subdivisions = ri.Cvar_Get( "r_subdivisions", "4", CVAR_ARCHIVE_ND | CVAR_LATCH );
+	r_subdivisions = ri.Cvar_Get( "r_subdivisions", "1", CVAR_ARCHIVE_ND | CVAR_LATCH );
 
 	r_maxpolys = ri.Cvar_Get( "r_maxpolys", XSTRING( MAX_POLYS ), CVAR_LATCH );
 	r_maxpolyverts = ri.Cvar_Get( "r_maxpolyverts", XSTRING( MAX_POLYVERTS ), CVAR_LATCH );
@@ -1451,8 +1451,9 @@ static void R_Register( void )
 	//
 	// archived variables that can change at any time
 	//
-	r_lodCurveError = ri.Cvar_Get( "r_lodCurveError", "250", CVAR_ARCHIVE_ND | CVAR_CHEAT );
-	r_lodbias = ri.Cvar_Get( "r_lodbias", "0", CVAR_ARCHIVE_ND );
+	r_lodCurveError = ri.Cvar_Get( "r_lodCurveError", "800", CVAR_ARCHIVE_ND );
+	ri.Cvar_CheckRange( r_lodCurveError, "250", "10000", CV_INTEGER );
+	r_lodbias = ri.Cvar_Get( "r_lodbias", "-2", CVAR_ARCHIVE_ND );
 	r_znear = ri.Cvar_Get( "r_znear", "4", CVAR_CHEAT );
 	ri.Cvar_CheckRange( r_znear, "0.001", "200", CV_FLOAT );
 	r_zproj = ri.Cvar_Get( "r_zproj", "64", CVAR_ARCHIVE_ND );

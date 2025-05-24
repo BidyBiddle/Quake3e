@@ -1523,7 +1523,7 @@ static void R_Register( void )
     ri.Cvar_CheckRange(r_mapGreyScale, "-1", "1", CV_FLOAT);
     ri.Cvar_SetDescription(r_mapGreyScale, "Makes the map greyscale by desaturating the level textures.");
 
-	r_subdivisions = ri.Cvar_Get( "r_subdivisions", "4", CVAR_ARCHIVE_ND | CVAR_LATCH );
+	r_subdivisions = ri.Cvar_Get( "r_subdivisions", "1", CVAR_ARCHIVE_ND | CVAR_LATCH );
     ri.Cvar_CheckRange(r_subdivisions, "1", "4", CV_INTEGER);
     ri.Cvar_SetDescription(r_subdivisions, "Set maximum level of detail. (an example would be the complexity of curves. 1=highest detail)");
 
@@ -1536,7 +1536,7 @@ static void R_Register( void )
 	r_lodCurveError = ri.Cvar_Get( "r_lodCurveError", "250", CVAR_ARCHIVE_ND | CVAR_CHEAT );
 	ri.Cvar_SetDescription(r_lodCurveError, "Determines how quickly polygons are pulled out with distance.");
 
-	r_lodbias = ri.Cvar_Get( "r_lodbias", "0", CVAR_ARCHIVE );
+	r_lodbias = ri.Cvar_Get( "r_lodbias", "-2", CVAR_ARCHIVE );
 	ri.Cvar_SetDescription(r_lodbias, "Level of visual detail, especially at distance. -2 Most detail, 2 Least.");
 
 	r_flares = ri.Cvar_Get ("r_flares", "0", CVAR_ARCHIVE_ND );
